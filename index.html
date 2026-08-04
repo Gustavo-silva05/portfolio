@@ -1,23 +1,213 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html>
+<html lang="en">
+
 <head>
-    <title>Meu Site</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name — Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <h1>Site do Gustavo está online!</h1>
+
+    <!-- NAV -->
+    <header class="nav">
+        <div class="nav__logo">YN</div>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__content">
+            <p class="hero__greeting">Hi, I'm</p>
+            <h1 class="hero__name">Your Name</h1>
+            <h2 class="hero__title">Full-Stack Developer</h2>
+            <p class="hero__desc">
+                I craft clean, performant web experiences from idea to deployment.
+                Passionate about great design and elegant code.
+            </p>
+            <div class="hero__cta">
+                <a href="#projects" class="btn btn--primary">View My Work</a>
+                <a href="#contact" class="btn btn--outline">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero__avatar">
+            <div class="avatar-placeholder">YN</div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section__title">About Me</h2>
+            <div class="about__grid">
+                <div class="about__text">
+                    <p>
+                        I'm a developer based in <strong>Your City</strong> with
+                        <strong>X years</strong> of experience building web applications.
+                        I love turning complex problems into simple, beautiful solutions.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me hiking, reading, or
+                        experimenting with new technologies.
+                    </p>
+                    <a href="#" class="btn btn--primary" download>Download CV</a>
+                </div>
+                <ul class="about__facts">
+                    <li><span class="fact__number">20+</span><span class="fact__label">Projects Completed</span></li>
+                    <li><span class="fact__number">5+</span><span class="fact__label">Years of Experience</span></li>
+                    <li><span class="fact__number">10+</span><span class="fact__label">Happy Clients</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section section--alt" id="skills">
+        <div class="container">
+            <h2 class="section__title">Skills</h2>
+            <div class="skills__grid">
+
+                <div class="skill-card">
+                    <div class="skill-card__icon">🌐</div>
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML &amp; CSS</li>
+                        <li>JavaScript / TypeScript</li>
+                        <li>React / Vue</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card__icon">⚙️</div>
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Node.js / Express</li>
+                        <li>Python / Django</li>
+                        <li>REST &amp; GraphQL APIs</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card__icon">🗄️</div>
+                    <h3>Database</h3>
+                    <ul>
+                        <li>PostgreSQL / MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card__icon">🚀</div>
+                    <h3>DevOps</h3>
+                    <ul>
+                        <li>Docker / Kubernetes</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>AWS / GCP</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section__title">Projects</h2>
+            <div class="projects__grid">
+
+                <article class="project-card">
+                    <div class="project-card__image project-card__image--1"></div>
+                    <div class="project-card__body">
+                        <span class="project-card__tag">Web App</span>
+                        <h3>Project One</h3>
+                        <p>A short description of this project and what problem it solves for users.</p>
+                        <div class="project-card__links">
+                            <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
+                            <a href="#" class="btn btn--sm btn--outline">Source Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card__image project-card__image--2"></div>
+                    <div class="project-card__body">
+                        <span class="project-card__tag">Mobile</span>
+                        <h3>Project Two</h3>
+                        <p>A short description of this project and what problem it solves for users.</p>
+                        <div class="project-card__links">
+                            <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
+                            <a href="#" class="btn btn--sm btn--outline">Source Code</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card__image project-card__image--3"></div>
+                    <div class="project-card__body">
+                        <span class="project-card__tag">API</span>
+                        <h3>Project Three</h3>
+                        <p>A short description of this project and what problem it solves for users.</p>
+                        <div class="project-card__links">
+                            <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
+                            <a href="#" class="btn btn--sm btn--outline">Source Code</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--alt" id="contact">
+        <div class="container">
+            <h2 class="section__title">Get in Touch</h2>
+            <p class="section__subtitle">Have a project in mind? I'd love to hear about it.</p>
+            <form class="contact__form">
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required />
+                    </div>
+                    <div class="form__group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="john@example.com" required />
+                    </div>
+                </div>
+                <div class="form__group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="Project enquiry" required />
+                </div>
+                <div class="form__group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+            </form>
+            <div class="contact__social">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 Your Name. Built with HTML &amp; CSS.</p>
+    </footer>
+
 </body>
-=======
-<html lang="">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
->>>>>>> 927ed4e176b541881b9b9350aa78c9a4c1cdc647
+
 </html>
