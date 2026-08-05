@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Gustavo Silva — Full-Stack Developer based in Porto Alegre, Brazil. Portfolio of web apps, APIs and open-source projects." />
+    <meta property="og:title" content="Gustavo Silva — Portfolio" />
+    <meta property="og:description"
+        content="Full-Stack Developer building web applications with React, Node.js and Python." />
+    <meta property="og:type" content="website" />
     <title>Gustavo Silva — Portfolio</title>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,14 +19,22 @@
     <!-- NAV -->
     <header class="nav">
         <div class="nav__logo">Gustavo Silva</div>
-        <nav>
-            <ul class="nav__links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="nav__right">
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle light theme">🌙</button>
+            <button class="nav__toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
 
     <!-- HERO -->
@@ -50,9 +64,9 @@
             <div class="about__grid">
                 <div class="about__text">
                     <p>
-                        I'm a developer based in <strong>Porto Alegre, Brasil</strong> with
-                        <strong>X years</strong> of experience building web applications.
-                        I love turning complex problems into simple, beautiful solutions.
+                        I'm a developer based in <strong>Porto Alegre, Brazil</strong> building
+                        web applications end to end. I love turning complex problems into
+                        simple, beautiful solutions.
                     </p>
                     <p>
                         When I'm not coding, you'll find me hiking, reading, or
@@ -61,9 +75,9 @@
                     <a href="Curriculo_GustavoSilva.pdf" class="btn btn--primary" download>Download CV</a>
                 </div>
                 <ul class="about__facts">
-                    <li><span class="fact__number">20+</span><span class="fact__label">Projects Completed</span></li>
-                    <li><span class="fact__number">5+</span><span class="fact__label">Years of Experience</span></li>
-                    <li><span class="fact__number">10+</span><span class="fact__label">Happy Clients</span></li>
+                    <li><span class="fact__number">3+</span><span class="fact__label">Projects Completed</span></li>
+                    <li><span class="fact__number">1+</span><span class="fact__label">Years of Experience</span></li>
+                    <li><span class="fact__number">Open</span><span class="fact__label">to New Roles</span></li>
                 </ul>
             </div>
         </div>
@@ -129,11 +143,14 @@
                     <div class="project-card__image project-card__image--1"></div>
                     <div class="project-card__body">
                         <span class="project-card__tag">Web App</span>
-                        <h3>Project One</h3>
-                        <p>A short description of this project and what problem it solves for users.</p>
+                        <h3>ADSP</h3>
+                        <p><!-- TODO: replace with a real, specific description of what ADSP does and the problem it solves -->
+                        </p>
                         <div class="project-card__links">
-                            <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
-                            <a href="#" class="btn btn--sm btn--outline">Source Code</a>
+                            <a href="https://stackblitz.com/github/Gustavo-silva05/ADSP" target="_blank"
+                                rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo</a>
+                            <a href="https://github.com/Gustavo-silva05/ADSP" target="_blank" rel="noopener noreferrer"
+                                class="btn btn--sm btn--outline">Source Code</a>
                         </div>
                     </div>
                 </article>
@@ -141,12 +158,15 @@
                 <article class="project-card">
                     <div class="project-card__image project-card__image--2"></div>
                     <div class="project-card__body">
-                        <span class="project-card__tag">Mobile</span>
-                        <h3>Project Two</h3>
-                        <p>A short description of this project and what problem it solves for users.</p>
+                        <span class="project-card__tag">Web App</span>
+                        <h3>IA</h3>
+                        <p><!-- TODO: replace with a real, specific description of what this project does and the problem it solves -->
+                        </p>
                         <div class="project-card__links">
-                            <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
-                            <a href="#" class="btn btn--sm btn--outline">Source Code</a>
+                            <a href="https://stackblitz.com/github/Gustavo-silva05/ADSP?terminal=pip%20install%20-r%20requirements.txt%20%26%26%20python3%20data_prep.py"
+                                target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo</a>
+                            <a href="https://github.com/Gustavo-silva05/IA" target="_blank" rel="noopener noreferrer"
+                                class="btn btn--sm btn--outline">Source Code</a>
                         </div>
                     </div>
                 </article>
@@ -156,7 +176,7 @@
                     <div class="project-card__body">
                         <span class="project-card__tag">API</span>
                         <h3>Project Three</h3>
-                        <p>A short description of this project and what problem it solves for users.</p>
+                        <p><!-- TODO: replace with a real project, or remove this card --></p>
                         <div class="project-card__links">
                             <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
                             <a href="#" class="btn btn--sm btn--outline">Source Code</a>
@@ -173,7 +193,7 @@
         <div class="container">
             <h2 class="section__title">Get in Touch</h2>
             <p class="section__subtitle">Have a project in mind? I'd love to hear about it.</p>
-            <form class="contact__form">
+            <form class="contact__form" novalidate>
                 <div class="form__row">
                     <div class="form__group">
                         <label for="name">Name</label>
@@ -193,11 +213,15 @@
                     <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
                 </div>
                 <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                <p class="form__status" role="status" aria-live="polite"></p>
             </form>
             <div class="contact__social">
-                <a href="https://github.com/Gustavo-silva05" class="social-link">GitHub</a>
-                <a href="https://www.linkedin.com/in/gustavosouzasilva" class="social-link">LinkedIn</a>
-                <a href="mailto:gus.ssilva05@gmail.com" class="social-link">Email</a>
+                <a href="https://github.com/Gustavo-silva05" target="_blank" rel="noopener noreferrer"
+                    class="social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/gustavosouzasilva" target="_blank" rel="noopener noreferrer"
+                    class="social-link">LinkedIn</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gus.ssilva05@gmail.com" target="_blank"
+                    rel="noopener noreferrer" class="social-link">Email</a>
             </div>
         </div>
     </section>
@@ -207,6 +231,9 @@
         <p>© 2026 Gustavo Silva. Built with HTML &amp; CSS.</p>
     </footer>
 
+    <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

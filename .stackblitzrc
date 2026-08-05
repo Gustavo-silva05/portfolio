@@ -1,0 +1,4 @@
+{
+  "installCommand": "pip install -r requirements.txt",
+  "startCommand": "python3 data_prep.py"
+}

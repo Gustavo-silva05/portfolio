@@ -1,2 +1,2 @@
 all:
-	npx http-server
+	npx browser-sync start --server --files "**/*" --no-cache --middleware "(req, res, next) => { res.setHeader('Set-Cookie', 'cookie_name=; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/;'); next(); }"
