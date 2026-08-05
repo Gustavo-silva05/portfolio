@@ -12,6 +12,46 @@
     <meta property="og:type" content="website" />
     <title>Gustavo Silva — Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <style>
+        .sandbox-container {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            font-family: monospace;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .sandbox-btn {
+            padding: 10px 15px;
+            background: #0e639c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .sandbox-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+
+        .sandbox-output {
+            background: #252526;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .btn--disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 
 <body>
@@ -144,8 +184,7 @@
                     <div class="project-card__body">
                         <span class="project-card__tag">Web App</span>
                         <h3>ADSP</h3>
-                        <p><!-- TODO: replace with a real, specific description of what ADSP does and the problem it solves -->
-                        </p>
+                        <p>Interactive project available on StackBlitz and source code on GitHub.</p>
                         <div class="project-card__links">
                             <a href="https://stackblitz.com/github/Gustavo-silva05/ADSP" target="_blank"
                                 rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo</a>
@@ -160,10 +199,9 @@
                     <div class="project-card__body">
                         <span class="project-card__tag">Web App</span>
                         <h3>IA</h3>
-                        <p><!-- TODO: replace with a real, specific description of what this project does and the problem it solves -->
-                        </p>
+                        <p>Machine learning and data processing project with an executable StackBlitz preview.</p>
                         <div class="project-card__links">
-                            <a href="https://stackblitz.com/github/Gustavo-silva05/ADSP?terminal=pip%20install%20-r%20requirements.txt%20%26%26%20python3%20data_prep.py"
+                            <a href="https://stackblitz.com/github/Gustavo-silva05/IA?terminal=pip%20install%20-r%20requirements.txt%20%26%26%20python3%20data_prep.py"
                                 target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo</a>
                             <a href="https://github.com/Gustavo-silva05/IA" target="_blank" rel="noopener noreferrer"
                                 class="btn btn--sm btn--outline">Source Code</a>
@@ -176,10 +214,10 @@
                     <div class="project-card__body">
                         <span class="project-card__tag">API</span>
                         <h3>Project Three</h3>
-                        <p><!-- TODO: replace with a real project, or remove this card --></p>
+                        <p>Project information will be added soon.</p>
                         <div class="project-card__links">
-                            <a href="#" class="btn btn--sm btn--primary">Live Demo</a>
-                            <a href="#" class="btn btn--sm btn--outline">Source Code</a>
+                            <span class="btn btn--sm btn--primary btn--disabled" aria-disabled="true">Live Demo</span>
+                            <span class="btn btn--sm btn--outline btn--disabled" aria-disabled="true">Source Code</span>
                         </div>
                     </div>
                 </article>
@@ -188,8 +226,20 @@
         </div>
     </section>
 
+    <!-- PYTHON SANDBOX SECTION -->
+    <section class="section section--alt">
+        <div class="container">
+            <div class="sandbox-container">
+                <h2>Python Sandbox - Direct GitHub Runner</h2>
+                <button id="runGithubBtn" class="sandbox-btn" type="button" onclick="runFromGitHub()" disabled>Loading
+                    Pyodide...</button>
+                <pre id="sandboxOutput" class="sandbox-output">Initializing WebAssembly environment...</pre>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT -->
-    <section class="section section--alt" id="contact">
+    <section class="section" id="contact">
         <div class="container">
             <h2 class="section__title">Get in Touch</h2>
             <p class="section__subtitle">Have a project in mind? I'd love to hear about it.</p>
@@ -220,20 +270,108 @@
                     class="social-link">GitHub</a>
                 <a href="https://www.linkedin.com/in/gustavosouzasilva" target="_blank" rel="noopener noreferrer"
                     class="social-link">LinkedIn</a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gus.ssilva05@gmail.com" target="_blank"
-                    rel="noopener noreferrer" class="social-link">Email</a>
+                <a href="mailto:gus.ssilva05@gmail.com" class="social-link">Email</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <p>© 2026 Gustavo Silva. Built with HTML &amp; CSS.</p>
+        <p>© 2026 Gustavo Silva. Built with HTML, CSS &amp; JavaScript.</p>
     </footer>
 
     <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
+
+    <script>
+        let pyodideInstance = null;
+        const REPO_OWNER = "Gustavo-silva05";
+        const REPO_NAME = "ADSP";
+        const BRANCH = "main";
+
+        async function initPyodideSandbox() {
+            const outputEl = document.getElementById("sandboxOutput");
+            const btn = document.getElementById("runGithubBtn");
+
+            try {
+                pyodideInstance = await loadPyodide();
+                await pyodideInstance.loadPackage(["pandas", "numpy", "scikit-learn"]);
+
+                outputEl.textContent = "Environment ready. Click the button to download and execute files from GitHub.";
+                btn.textContent = "Run from GitHub";
+                btn.disabled = false;
+            } catch (err) {
+                outputEl.textContent = "Failed to initialize Pyodide: " + (err?.message || String(err));
+            }
+        }
+
+        async function fetchGitHubFile(path, isBinary = false) {
+            const url = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${path}`;
+            const response = await fetch(url, { cache: "no-store" });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status} while downloading: ${path}`);
+            }
+
+            return isBinary ? new Uint8Array(await response.arrayBuffer()) : await response.text();
+        }
+
+        async function runFromGitHub() {
+            if (!pyodideInstance) return;
+
+            const outputEl = document.getElementById("sandboxOutput");
+            const btn = document.getElementById("runGithubBtn");
+
+            btn.disabled = true;
+            outputEl.textContent = "1/3 Downloading datasets from GitHub...";
+
+            try {
+                const csvFiles = [
+                    "ObesityDataSet_raw_and_data_sinthetic.csv",
+                    "winequality-red.csv",
+                    "winequality-white.csv"
+                ];
+
+                for (const csv of csvFiles) {
+                    const content = await fetchGitHubFile(csv, true);
+                    pyodideInstance.FS.writeFile(csv, content);
+                }
+
+                outputEl.textContent = "2/3 Downloading main Python script (data_prep.py)...";
+                const pythonCode = await fetchGitHubFile("data_prep.py", false);
+
+                outputEl.textContent = "3/3 Running script in the browser...\n\n";
+
+                pyodideInstance.runPython(`
+import sys
+import io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+                `);
+
+                await pyodideInstance.runPythonAsync(pythonCode);
+
+                const stdout = pyodideInstance.runPython("sys.stdout.getvalue()");
+                const stderr = pyodideInstance.runPython("sys.stderr.getvalue()");
+                const combinedOutput = [stdout, stderr].filter(Boolean).join("\n");
+
+                outputEl.textContent = combinedOutput || "Execution completed successfully (no print output).";
+            } catch (err) {
+                console.error(err);
+                outputEl.textContent = "EXECUTION ERROR:\n" + (err?.message || String(err));
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", initPyodideSandbox);
+    </script>
+    <script type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
+        integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
+        data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}'
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
