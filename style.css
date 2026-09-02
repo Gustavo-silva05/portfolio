@@ -770,3 +770,42 @@ body.nav-open {
         grid-template-columns: 1fr;
     }
 }
+
+
+.sandbox-container {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    font-family: monospace;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.sandbox-btn {
+    padding: 10px 15px;
+    background: #0e639c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sandbox-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+.sandbox-output {
+    background: #252526;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin-top: 10px;
+}
+
+.btn--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}

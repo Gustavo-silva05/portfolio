@@ -1,3 +1,32 @@
+async function loadComponents() {
+    const components = [
+        ['#about-component', 'components/about.html'],
+        ['#skills-component', 'components/skills.html'],
+        ['#projects-component', 'components/projects.html'],
+        ['#contact-component', 'components/contact.html']
+    ];
+
+    await Promise.all(
+        components.map(async ([selector, file]) => {
+            const response = await fetch(file);
+            if (!response.ok) {
+                throw new Error(`Could not load ${file}: ${response.status}`);
+            }
+
+            document.querySelector(selector).innerHTML = await response.text();
+        })
+    );
+
+    initializePage();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadComponents().catch((error) => {
+        console.error('Failed to load page components:', error);
+    });
+});
+
+function initializePage() {
 /* =========================================================
    THEME TOGGLE (persists in-memory only — no localStorage
    available in this sandbox; swap to localStorage in prod)
@@ -144,4 +173,5 @@ form.addEventListener('submit', (event) => {
 function showStatus(text, type) {
     formStatus.textContent = text;
     formStatus.className = `form__status form__status--${type}`;
+}
 }
